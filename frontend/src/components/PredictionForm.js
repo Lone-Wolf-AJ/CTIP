@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { getPredictedPrice } from '../services/api';  // Import the API service
+import { getPredictedPrice } from '../services/api';
+import './PredictionForm.css';  // Import your CSS
 
 const PredictionForm = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const PredictionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const prediction = await getPredictedPrice(formData);
+      const prediction = await getPredictedPrice(formData);  // Calls the POST request
       setPredictedPrice(prediction.predicted_price);
       setError(null);
     } catch (err) {
@@ -33,9 +34,9 @@ const PredictionForm = () => {
       setPredictedPrice(null);
     }
   };
-
+  
   return (
-    <div>
+    <div className="prediction-form">
       <h2>Predict Property Price</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -57,7 +58,6 @@ const PredictionForm = () => {
         <button type="submit">Get Prediction</button>
       </form>
 
-      {/* Show predicted price or error */}
       {predictedPrice !== null && (
         <div>
           <h3>Predicted Price: ${predictedPrice}</h3>

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';  // FastAPI server URL
+const API_URL = 'http://127.0.0.1:8000';
 
-// Function to send user input data to FastAPI and get the prediction
 export const getPredictedPrice = async (inputData) => {
   try {
+    // Make sure this is a POST request
     const response = await axios.post(`${API_URL}/predict`, inputData);
-    return response.data;  // Returning the prediction result
+    return response.data;  // Return the prediction result
   } catch (error) {
     console.error("Error fetching prediction:", error);
     throw error;
