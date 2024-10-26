@@ -1,12 +1,17 @@
 import React from 'react';
-import PredictionForm from './components/PredictionForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home'; // Make sure this is the landing page
+import SuburbInsights from './pages/SuburbInsights';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Housing Market AI Prediction</h1>
-      <PredictionForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Set Home as the default route */}
+        <Route path="/suburb/:suburb" element={<SuburbInsights />} /> {/* Suburb insights page */}
+        {/* Add other routes here if necessary */}
+      </Routes>
+    </Router>
   );
 }
 

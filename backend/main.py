@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import os
+import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -38,3 +39,11 @@ async def predict_price(data: PropertyData):
 @app.get("/")
 async def root():
     return {"message": "Welcome to the Property Price Prediction API"}
+
+
+@app.get("/heatmap")
+async def get_heatmap_data():
+    # Sample data for testing, replace with actual data logic
+    data = pd.DataFrame({"Regionname": ["Region1", "Region2"], "Price": [500000, 700000]})
+    heatmap_data = data.to_dict(orient="records")
+    return heatmap_data
