@@ -1,0 +1,31 @@
+
+.prediction-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .prediction-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .prediction-form input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 16px;
+    box-sizing: border-box;
+  }
+  
+  .prediction-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
