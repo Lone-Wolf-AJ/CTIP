@@ -12,7 +12,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Replace with your React app's URL
+    allow_origins=["http://localhost:3000"], 
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
@@ -48,3 +48,5 @@ async def get_heatmap_data():
     data = pd.DataFrame({"Regionname": ["Region1", "Region2"], "Price": [500000, 700000]})
     heatmap_data = data.to_dict(orient="records")
     return heatmap_data
+
+
