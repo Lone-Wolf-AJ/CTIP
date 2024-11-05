@@ -1,0 +1,50 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .left-section {
+    flex: 2;
+    height: 570px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  .right-section {
+    flex: 1;
+    max-width: 350px;
+  }
+  
+  .map-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .map-instructions {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .map-container {
+    flex: 1; /* Ensures map container takes remaining space */
+    width: 100%;
+    height: 450px; /* Fixed height for the map */
+    overflow: hidden; /* Ensures the map doesn't overflow */
+  }
+

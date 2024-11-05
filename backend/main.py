@@ -43,7 +43,15 @@ async def root():
 
 @app.get("/heatmap")
 async def get_heatmap_data():
-    # Sample data for testing, replace with actual data logic
-    data = pd.DataFrame({"Regionname": ["Region1", "Region2"], "Price": [500000, 700000]})
-    heatmap_data = data.to_dict(orient="records")
-    return heatmap_data
+    # Load data and group by Suburb, calculating the average price and representative coordinates
+    data = pd.read_csv('melb_data.csv')  # Ensure 'melb_data.csv' contains 'Suburb', 'Lattitude', 'Longtitude', 'Price'
+    
+    # Group by suburb, calculating the average price, and take the first latitude/longitude for simplicity
+    heatmap_data = data.groupby('Suburb').agg(
+        median_price=('Price', 'median'),
+        Lattitude=('Lattitude', 'first'),
+        Longtitude=('Longtitude', 'first')
+    ).reset_index()
+    
+    # Convert to a list of dictionaries for JSON response
+    return heatmap_data.to_dict(orient="records")
