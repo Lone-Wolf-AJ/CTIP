@@ -1,0 +1,26 @@
+.suburb-insights {
+    padding: 20px;
+  }
+  
+  .input-and-map-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .prediction-form-container {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .suburb-heatmap-container {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 500px; /* Set a height for the heatmap container */
+  }
+  

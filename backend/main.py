@@ -1,11 +1,10 @@
 # backend/main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
 import os
 import pandas as pd
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -18,10 +17,12 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-
 # Load the model
 model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
 model = joblib.load(model_path)
+
+# Load the dataset once to be used for both endpoints
+data = pd.read_csv('melb_data.csv')  # Ensure 'melb_data.csv' contains 'Suburb', 'Lattitude', 'Longtitude', 'Price'
 
 # Define input data model
 class PropertyData(BaseModel):
@@ -41,13 +42,10 @@ async def predict_price(data: PropertyData):
 async def root():
     return {"message": "Welcome to the Property Price Prediction API"}
 
-
+# Endpoint for heatmap of all Melbourne
 @app.get("/heatmap")
 async def get_heatmap_data():
-    # Load data and group by Suburb, calculating the average price and representative coordinates
-    data = pd.read_csv('melb_data.csv')  # Ensure 'melb_data.csv' contains 'Suburb', 'Lattitude', 'Longtitude', 'Price'
-    
-    # Group by suburb, calculating the average price, and take the first latitude/longitude for simplicity
+    # Group by suburb, calculating the median price, and take the first latitude/longitude for simplicity
     heatmap_data = data.groupby('Suburb').agg(
         median_price=('Price', 'median'),
         Lattitude=('Lattitude', 'first'),
@@ -56,3 +54,26 @@ async def get_heatmap_data():
     
     # Convert to a list of dictionaries for JSON response
     return heatmap_data.to_dict(orient="records")
+
+# Endpoint for heatmap of a specific suburb
+@app.get("/suburb-heatmap")
+async def get_suburb_heatmap_data(suburb: str):
+    try:
+        print(f"Received request for suburb: {suburb}")  # Debugging statement
+
+        # Filter data by the specified suburb
+        suburb_data = data[data['Suburb'].str.lower().str.strip() == suburb.lower().strip()]
+
+        if suburb_data.empty:
+            print(f"No data found for suburb: {suburb}")  # Debug statement
+            raise HTTPException(status_code=404, detail="No data found for this suburb")
+
+        # Prepare the data for each property in the suburb
+        heatmap_data = suburb_data[['Price', 'Lattitude', 'Longtitude']].to_dict(orient="records")
+        
+        print(f"Returning data for suburb: {suburb}, Number of properties: {len(heatmap_data)}")  # Debugging statement
+        return heatmap_data
+
+    except Exception as e:
+        print(f"An error occurred: {e}")  # Print the error
+        raise HTTPException(status_code=500, detail="Internal server error")
