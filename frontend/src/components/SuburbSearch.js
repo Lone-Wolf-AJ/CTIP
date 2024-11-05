@@ -22,6 +22,8 @@ const SuburbSearch = () => {
         onChange={(e) => setSuburb(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
+      <p>Our advanced AI tools will help you explore tomorrow's real estate market today. With advanced machine learning
+        technologies we will provide you insights about your prefered suburb. </p>
     </div>
   );
 };
