@@ -3,7 +3,7 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
+
     border-radius: 5px;
     background-color: #f9f9f9;
   }
@@ -22,10 +22,11 @@
   }
   
   .prediction-form button {
-    background-color: #4CAF50;
+    background-color: #d0bdf4;
     color: white;
     padding: 10px;
     border: none;
+    font-weight: 600;
     cursor: pointer;
   }
   

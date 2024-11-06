@@ -30,7 +30,7 @@ const AttributeEffectBarChart = ({ suburb }) => {
             x: attributes,
             y: effects,
             type: 'bar',
-            marker: {  color: '#a28089'  }
+            marker: { color: 'teal' }
           }
         ]}
         layout={{

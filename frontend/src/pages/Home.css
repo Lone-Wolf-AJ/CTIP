@@ -24,6 +24,7 @@
   
   .right-section {
     flex: 1;
+    background-color: #e5eaf5;
     max-width: 350px;
     border-radius: 8px;
     padding: 20px;

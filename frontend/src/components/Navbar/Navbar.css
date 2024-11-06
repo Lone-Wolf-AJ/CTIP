@@ -1,14 +1,16 @@
 /* Navbar.css */
 .navbar {
-  background-color: #333;
+  background-color: #A0D2EB;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
+  color: #a28089;
 }
 
 .navbar-logo a {
-  color: #fff;
+  color: Black;
   font-size: 1.5em;
   text-decoration: none;
 }
@@ -17,14 +19,16 @@
   list-style: none;
   display: flex;
   gap: 15px;
+
 }
 
 .navbar-links a {
-  color: #fff;
+  color: Black;
+  font-weight: 600;
   text-decoration: none;
   font-size: 1em;
 }
 
 .navbar-links a:hover {
-  color: #ff8c00;
+  color: #a28089;
 }
